@@ -5,7 +5,7 @@ const chatWindow = document.getElementById("chatWindow");
 const sendBtn = document.getElementById("sendBtn");
 const latestQuestion = document.getElementById("latestQuestion");
 
-const WORKER_URL = "cfut_K81pak0ym1ra9xzJNOub0YEAPe19tF2nxNwOH4swd16d4e30";
+const WORKER_URL = "https://api-worker.rk4b2rt5k6.workers.dev/";
 
 // Keep a system prompt so the bot stays focused on L'Oréal + beauty topics
 const messages = [
@@ -26,7 +26,7 @@ const messages = [
       Keep your answers helpful, concise, and easy to read.
       Ask short follow-up questions when needed to personalize recommendations.
       Do not claim to diagnose medical conditions.
-          `.trim(),
+    `.trim(),
   },
 ];
 
@@ -78,15 +78,6 @@ chatForm.addEventListener("submit", async (e) => {
 
   userInput.value = "";
   sendBtn.disabled = true;
-
-  if (WORKER_URL === "PASTE_YOUR_CLOUDFLARE_WORKER_URL_HERE") {
-    addMessage(
-      "ai",
-      "Please paste your Cloudflare Worker URL into script.js first.",
-    );
-    sendBtn.disabled = false;
-    return;
-  }
 
   try {
     const response = await fetch(WORKER_URL, {
